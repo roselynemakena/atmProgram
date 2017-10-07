@@ -29,15 +29,22 @@ public class AtmProgram {
 
     public static void main(String[] args) {
         // TODO code application logic here
+        
+           /*
+                Instanciate the AtmProgram with a balance of 50000.                
+                */
         AtmProgram one = new AtmProgram(50000);
         startProgram();
 
     }
 
     public static void startProgram() {
+           /*
+                Start by prompting the user to enter an action.                
+                */
 
         System.out.println("What would you like to do? 1.) Query Balance \t 2.) Deposit \t 3.) Withdraw  \t 4.) Quit \t");
-         System.out.println("-----------------------------------");
+        System.out.println("-----------------------------------");
 
         String choice = sc.nextLine();
 
@@ -48,12 +55,16 @@ public class AtmProgram {
 
                 break;
             case "2":
+                   /*
+                Checks that the deposit count in the day does not exceed 4.                
+                */
                 if (getDepositCount() >= 4) {
                     System.out.println("Sorry, max deposit number of time is 4 ");
                     startProgram();
                 }
-
-//                Add a count to the deposit count
+               /*
+                Set deposit amount and prompt user to enter amount.                
+                */
                 setDepositCount();
                 System.out.println("Enter the amount you want to deposit: ");
                 int amount = Integer.parseInt(sc.nextLine());
@@ -62,17 +73,25 @@ public class AtmProgram {
                     startProgram();
 
                 }
+                /*
+                Checks that the amount deposited is not less than 1.                
+                 */
                 if (amount < 1) {
                     System.out.println("Sorry, min deposit is 1. Try again. ");
                     startProgram();
 
                 }
+                /*
+                Checks that the total amount deposited for the day is not greater than 150000.                
+                 */
                 if (getDailyDepositAmount() > 150000 || ((getDailyDepositAmount() + amount) > 150000)) {
                     System.out.println("Sorry, total maximum deposit allowed in a day is 150000. Try again. ");
                     startProgram();
 
                 }
-//                Credit amount to your account
+                /*
+                Make the deposit.                
+                 */
                 setDeposit(amount);
                 setDailyDepositAmount(amount);
                 System.out.println("Great, your new balance is: " + getBalance());
@@ -82,12 +101,18 @@ public class AtmProgram {
 
                 break;
             case "3":
-                
-                if(getWithdrawalCount() >= 3 ){
-                System.out.println("Sorry, max withdrawal number of time is 3. Taking you to the menu");
-                startProgram();
+                /*
+                Checks that the maximum withdrawal count for the day does not exceed 3.                
+                 */
+
+                if (getWithdrawalCount() >= 3) {
+                    System.out.println("Sorry, max withdrawal number of time is 3. Taking you to the menu");
+                    startProgram();
                 }
-                
+
+                /*
+               Get amount to withdraw.                
+                 */
                 System.out.println("Enter the amount you want to withdraw: ");
                 int amt = Integer.parseInt(sc.nextLine());
                 if (amt > 20000) {
@@ -95,22 +120,34 @@ public class AtmProgram {
                     startProgram();
 
                 }
+                /*
+                Checks that the amount to withdraw is not less than 1.                
+                 */
                 if (amt < 1) {
                     System.out.println("Sorry, min withdrawal is 1. Try again. ");
                     startProgram();
 
                 }
+                /*
+                Checks that the amount to withdraw in the day is not greater than 50000.                
+                 */
                 if (getDailyWithdrawalAmount() > 50000) {
                     System.out.println("Sorry, total maximum deposit allowed in a day is 150000. Try again. ");
                     startProgram();
 
                 }
+                /*
+                Checks that the amount to withdraw is not larger than amount in the account.                
+                 */
                 if (getBalance() < amt) {
-                     System.out.println("Sorry, you cannot withdraw ore than what is in you account. You have: "+getBalance() +". Try again. ");
+                    System.out.println("Sorry, you cannot withdraw ore than what is in you account. You have: " + getBalance() + ". Try again. ");
                     startProgram();
 
                 }
 
+                /*
+                Make the withdrawal.                
+                 */
                 setWithdrawalCount();
                 setDailyWithdrawalAmount(amt);
                 makeWithdrawal(amt);
@@ -122,10 +159,13 @@ public class AtmProgram {
 
                 break;
             case "4":
+
+                /*
+                Checks that the user actually wants to quit.                
+                 */
                 System.out.println("Are you sure you would like to quit? \t. Enter n to return to menu or any character to exit.");
 
                 String ch = sc.nextLine();
-                System.out.println("It's:: " + ch);
                 if (ch.equals("n") || ch.equals("no")) {
                     startProgram();
 
@@ -138,6 +178,9 @@ public class AtmProgram {
                 break;
             default:
 
+                /*
+                Checks that an invalid input is handled.                
+                 */
                 System.out.println("Invalid choice:: Please try again: ");
                 startProgram();
 
@@ -146,6 +189,9 @@ public class AtmProgram {
 
     }
 
+    /*
+                These are the getter and setter methods for the program.                
+     */
     public static int getBalance() {
         return balance;
     }
