@@ -23,9 +23,9 @@ You will need to install [Java](https://docs.oracle.com/javase/8/docs/technotes/
 
 Then, you can work with the code and have fun!
 
-## Deployment
+## Running the tests
 
-Add additional notes about how to deploy this on a live system
+The [junit](https://junit.org) tests are located in test package inside the test folder. To run the tests, right click and click on tests(if in netbeans) and the tests will run and show the results.
 
 
 ## Contributing
